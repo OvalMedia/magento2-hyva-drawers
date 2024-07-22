@@ -1,0 +1,22 @@
+<?php
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Hyva\Theme\ViewModel\Navigation;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+
+/** @var HeroiconsOutline $heroicons */
+$heroicons = $viewModels->require(HeroiconsOutline::class);
+?>
+<button
+    x-data
+    type="button"
+    @click="drawerOpen('hyva-drawers-demo-top')"
+    aria-label="<?= $escaper->escapeHtmlAttr(__('Open Top Demo')) ?>"
+>
+    <?= $heroicons->arrowCircleUpHtml('p-3', 48, 48) ?>
+</button>

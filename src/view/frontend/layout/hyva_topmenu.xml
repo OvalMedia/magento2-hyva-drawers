@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- remove existing mobile menu -->
+        <referenceBlock name="topmenu_mobile" remove="true" />
+
+        <!-- separate hamburger button -->
+        <referenceBlock name="header-content">
+            <block name="mobile-menu-button" template="Hyva_Drawers::topmenu/button.phtml" />
+        </referenceBlock>
+
+        <!-- add a new drawer for the mobile menu -->
+        <referenceContainer name="drawers-container">
+            <block name="hyva-menu-drawer" class="Hyva\Drawers\Block\Drawer">
+                <arguments>
+                    <argument name="title" xsi:type="string">Menu</argument>
+                    <argument name="position" xsi:type="string">left</argument>
+                </arguments>
+                <block name="hyva-menu-drawer.header" />
+                <block name="hyva-menu-drawer.content" template="Hyva_Drawers::topmenu/content.phtml" />
+            </block>
+        </referenceContainer>
+    </body>
+</page>

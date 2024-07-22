@@ -1,0 +1,162 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Hyva\Theme\ViewModel\Navigation;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+
+/** @var HeroiconsOutline $heroicons */
+$heroicons = $viewModels->require(HeroiconsOutline::class);
+
+/** @var Navigation $viewModelNavigation */
+$viewModelNavigation = $viewModels->require(Navigation::class, $block);
+
+$uniqueId = '_' . uniqid();
+
+// Order is important here: 1. build the menu data, 2. then set the cache tags from the view model identities
+$menuItems = $viewModelNavigation->getNavigation(4);
+$block->setData('cache_tags', $viewModelNavigation->getIdentities());
+?>
+<nav
+    x-data="initMenuMobile<?= $escaper->escapeHtml($uniqueId) ?>()"
+    @load.window="setActiveMenu($root)"
+    class="z-20 w-full order-2 sm:order-1 lg:order-2 navigation h-full"
+    aria-label="<?= $escaper->escapeHtmlAttr(__('Site navigation')) ?>"
+    role="navigation"
+>
+    <ul
+        class="border-t flex flex-col gap-y-1"
+        aria-label="<?= $escaper->escapeHtmlAttr(__('Site navigation links')) ?>">
+        <?php foreach ($menuItems as $index => $menuItem): ?>
+            <li
+                data-child-id="<?= $escaper->escapeHtmLAttr($index) ?>-main"
+                class="level-0">
+                <div
+                    class="flex items-center transition-transform duration-150 ease-in-out transform"
+                    :class="{
+                        '-translate-x-full' : mobilePanelActiveId,
+                        'translate-x-0' : !mobilePanelActiveId
+                    }">
+                    <a
+                        class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                            bg-container-lighter border-container level-0
+                        "
+                        href="<?= $escaper->escapeUrl($menuItem['url']) ?>"
+                        title="<?= $escaper->escapeHtmlAttr($menuItem['name']) ?>">
+                        <?= $escaper->escapeHtml($menuItem['name']) ?>
+                    </a>
+                    <?php if (!empty($menuItem['childData'])): ?>
+                        <button
+                            @click="openSubcategory('<?= /* @noEscape */ $index ?>')"
+                            class="absolute right-0 flex items-center justify-center w-11 h-11 mr-8 cursor-pointer
+                            bg-container-lighter border-container"
+                            aria-label="<?= $escaper->escapeHtmlAttr(__('Open %1 subcategories', $menuItem['name'])) ?>"
+                            aria-haspopup="true"
+                            :aria-expanded="mobilePanelActiveId === '<?= /* @noEscape */ (string) $index ?>'">
+                            <div class="w-8 h-8 border rounded">
+                                <?= $heroicons->chevronRightHtml('w-full h-full p-1', 24, 24, ["aria-hidden" => "true"]) ?>
+                            </div>
+                        </button>
+                    <?php endif; ?>
+                </div>
+                <?php if (!empty($menuItem['childData'])): ?>
+                    <div
+                        data-child-id="<?= $escaper->escapeHtmLAttr($index) ?>"
+                        class="absolute top-0 right-0 z-10 flex flex-col gap-1 w-full h-full p-1 bg-container-lighter"
+                        :class="{
+                            'hidden': mobilePanelActiveId !== '<?= /* @noEscape */ (string) $index ?>'
+                        }">
+                        <ul
+                            class="mt-16 transition-transform duration-200 ease-in-out translate-x-full transform"
+                            :class="{
+                                'translate-x-full' : mobilePanelActiveId !== '<?= /* @noEscape */ (string) $index ?>',
+                                'translate-x-0' : mobilePanelActiveId === '<?= /* @noEscape */ (string) $index ?>',
+                            }"
+                            aria-label="<?= $escaper->escapeHtmlAttr(__('Subcategories')) ?>">
+                            <li>
+                                <button
+                                    type="button"
+                                    class="flex items-center px-8 py-4 border-b cursor-pointer bg-container border-container w-full border-t"
+                                    @click="backToMainCategories('<?= /* @noEscape */ $index ?>-main')"
+                                    aria-label="<?= $escaper->escapeHtmlAttr(__('Back to main categories')) ?>">
+                                    <?= $heroicons->chevronLeftHtml('', 24, 24, ["aria-hidden" => "true"]); ?>
+                                    <span class="ml-4">
+                                        <?= $escaper->escapeHtml($menuItem['name']) ?>
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <a
+                                    href="<?= $escaper->escapeUrl($menuItem['url']) ?>"
+                                    title="<?= $escaper->escapeHtmlAttr($menuItem['name']) ?>"
+                                    class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                        bg-container-lighter border-container">
+                                    <span class="ml-10">
+                                        <?= $escaper->escapeHtml(__('View All')) ?>
+                                    </span>
+                                </a>
+                            </li>
+                            <?php foreach ($menuItem['childData'] as $subMenuItem): ?>
+                                <li>
+                                    <a
+                                        href="<?= $escaper->escapeUrl($subMenuItem['url']) ?>"
+                                        title="<?= $escaper->escapeHtmlAttr($subMenuItem['name']) ?>"
+                                        class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                            bg-container-lighter border-container
+                                        "
+                                    >
+                                        <span class="ml-10 text-base text-gray-700">
+                                            <?= $escaper->escapeHtml($subMenuItem['name']) ?>
+                                        </span>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</nav>
+<script>
+    'use strict';
+
+    const initMenuMobile<?= $escaper->escapeHtml($uniqueId) ?> = () => {
+        return {
+            mobilePanelActiveId: null,
+            setActiveMenu(menuNode) {
+                Array.from(menuNode.querySelectorAll('a')).filter(link => {
+                    return link.href === window.location.href.split('?')[0];
+                }).map(item => {
+                    item.classList.add('underline');
+                    item.closest('li.level-0') &&
+                    item.closest('li.level-0').querySelector('a.level-0').classList.add('underline');
+                });
+            },
+            openSubcategory(index) {
+                const menuNodeRef = document.querySelector('[data-child-id=' + index + ']')
+                this.mobilePanelActiveId = this.mobilePanelActiveId === index ? 0 : index
+                this.$nextTick(() => hyva.trapFocus(menuNodeRef))
+            },
+            backToMainCategories(index) {
+                const menuNodeRef = document.querySelector('[data-child-id=' + index + ']')
+                this.mobilePanelActiveId = 0
+                this.$nextTick(() => {
+                    hyva.trapFocus(this.$refs['mobileMenuNavLinks'])
+                    menuNodeRef.querySelector('a').focus()
+                })
+            }
+        }
+    }
+</script>

@@ -1,0 +1,90 @@
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('drawer', {
+            states: {},
+
+            state(id) {
+                if (this.states[id] === undefined) {
+                    this.states[id] = false;
+                }
+                return this.states[id];
+            },
+
+            toggle(id) {
+                if (this.states[id] === undefined) {
+                    this.states[id] = false;
+                }
+                this.states[id] = !this.states[id];
+                this.scrollLock(this.states[id]);
+            },
+
+            open(id) {
+                this.states[id] = true;
+                this.scrollLock(true);
+            },
+
+            close(id) {
+                this.states[id] = false;
+                this.scrollLock(false);
+            },
+
+            closeAll() {
+                for (const [key, value] of Object.entries(this.states)) {
+                    this.states[key] = false;
+                }
+
+                this.scrollLock(false);
+            },
+
+            scrollLock(use = true) {
+                document.body.style.overflow = use ? 'hidden' : '';
+            },
+        });
+    });
+
+    /**
+     * Returns a drawer's current state
+     * open: true
+     * closed: false
+     *
+     * @param id
+     * @returns {*}
+     */
+    function drawerState(id) {
+        return Alpine.store('drawer').state(id);
+    }
+
+    /**
+     * Toggle a drawer
+     *
+     * @param id
+     */
+    function drawerToggle(id) {
+        Alpine.store('drawer').toggle(id);
+    }
+
+    /**
+     * Open a drawer
+     *
+     * @param id
+     */
+    function drawerOpen(id) {
+        Alpine.store('drawer').open(id);
+    }
+
+    /**
+     * Close a drawer
+     *
+     * @param id
+     */
+    function drawerClose(id) {
+        Alpine.store('drawer').close(id);
+    }
+
+    /**
+     * Close all open drawers at once
+     */
+    function drawerCloseAll() {
+        Alpine.store('drawer').closeAll();
+    }
+</script>

@@ -1,0 +1,28 @@
+<?php
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Hyva\Theme\ViewModel\Navigation;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+
+/** @var HeroiconsOutline $heroicons */
+$heroicons = $viewModels->require(HeroiconsOutline::class);
+?>
+<button
+    x-ref="mobileMenuTrigger"
+    @click.prevent.stop="drawerOpen('hyva-menu-drawer')"
+    type="button"
+    aria-label="<?= $escaper->escapeHtmlAttr(__('Open menu')) ?>"
+    aria-haspopup="menu"
+    class="lg:hidden"
+    <?php /*
+    :aria-expanded="open"
+    :hidden="open"
+    */ ?>
+>
+    <?= $heroicons->menuHtml('p-3', 48, 48) ?>
+</button>

@@ -1,0 +1,58 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\StoreConfig;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+/** @var ViewModelRegistry $viewModels */
+
+$storeConfig = $viewModels->require(StoreConfig::class);
+$maxItemsToDisplay = $storeConfig->getStoreConfig('checkout/sidebar/max_items_display_count');
+
+/** @var HeroiconsOutline $heroicons */
+$heroicons = $viewModels->require(HeroiconsOutline::class);
+?>
+<div x-data="initCartDrawer()" @private-content-loaded.window="getData($event.detail.data)">
+    <template x-if="itemsCount">
+        <div>
+            <?= $block->getChildHtml('cart-drawer.totals.before'); ?>
+
+            <div class="relative grid gap-6 sm:gap-8 py-3 px-1 sm:px-3 bg-white">
+                <div class="w-full p-3 space-x-4 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100">
+                    <p><?= $escaper->escapeHtml(__('Subtotal')) ?>: <span x-html="cart.subtotal"></span></p>
+                </div>
+                <div class="w-full p-3 space-x-4 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100">
+                    <a @click.prevent.stop="closeCartDrawer; $dispatch('toggle-authentication',
+                                        {url: '<?= $escaper->escapeUrl($block->getUrl('checkout')) ?>'});"
+                       href="<?= $escaper->escapeUrl($block->getUrl('checkout')) ?>"
+                       class="inline-flex btn btn-primary"
+                    >
+                        <?= $escaper->escapeHtml(__('Checkout')) ?>
+                    </a>
+                    <span><?= $escaper->escapeHtml(__('or')) ?></span>
+                    <a href="<?= $escaper->escapeUrl($block->getUrl('checkout/cart')) ?>"
+                       class="underline"
+                    >
+                        <?= $escaper->escapeHtml(__('View and Edit Cart')) ?>
+                    </a>
+                </div>
+                <div x-html="getSectionDataExtraActions()"></div>
+                <?= $block->getChildHtml('extra_actions'); ?>
+            </div>
+        </div>
+    </template>
+
+    <?= $block->getChildHtml('cart-drawer.bottom'); ?>
+</div>

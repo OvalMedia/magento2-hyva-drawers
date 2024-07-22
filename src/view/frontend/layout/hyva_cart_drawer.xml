@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="cart-drawer" remove="true" />
+
+        <referenceBlock name="header-content">
+            <block name="cart-icon" template="Hyva_Drawers::cart/button.phtml" />
+        </referenceBlock>
+
+        <referenceContainer name="drawers-container">
+            <block name="hyva-cart-drawer" class="Hyva\Drawers\Block\Drawer">
+                <arguments>
+                    <argument name="title" xsi:type="string">My Cart</argument>
+                    <argument name="position" xsi:type="string">right</argument>
+                </arguments>
+                <block name="hyva-cart-drawer.header" />
+                <block name="hyva-cart-drawer.content" template="Hyva_Drawers::cart/content.phtml" />
+                <block name="hyva-cart-drawer.footer" template="Hyva_Drawers::cart/footer.phtml" />
+            </block>
+        </referenceContainer>
+    </body>
+</page>

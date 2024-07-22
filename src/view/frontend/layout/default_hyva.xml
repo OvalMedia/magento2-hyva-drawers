@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="drawer_examples"/>
+    <update handle="hyva_cart_drawer"/>
+    <update handle="hyva_topmenu"/>
+
+    <referenceContainer name="before.body.end">
+        <container name="drawers-container" />
+    </referenceContainer>
+
+    <referenceBlock name="script-alpine-js">
+        <block name="drawers-js" template="Hyva_Drawers::js.phtml" />
+    </referenceBlock>
+</page>

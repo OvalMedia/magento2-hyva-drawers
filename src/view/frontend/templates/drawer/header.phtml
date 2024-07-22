@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+/** @var ViewModelRegistry $viewModels */
+/** @var HeroiconsOutline $heroicons */
+$heroicons = $viewModels->require(HeroiconsOutline::class);
+?>
+<div class="flex gap-2 justify-between items-center">
+    <p class="text-lg font-medium leading-7 text-gray-900">
+        <strong><?= $escaper->escapeHtml(__($block->getParentBlock()->getTitle())) ?></strong>
+    </p>
+
+    <button
+            type="button"
+            @click="drawerClose('<?= $block->getParentBlock()->getId() ?>')"
+            aria-label="<?= $escaper->escapeHtmlAttr(__('Close %1', $block->getParentBlock()->getTitle())) ?>"
+            class="absolute top-0 right-2 p-4 mt-2 text-gray-300 transition-colors hover:text-black"
+    >
+        <?= $heroicons->xHtml('', 24, 24, ['aria-hidden' => 'true']); ?>
+    </button>
+</div>
