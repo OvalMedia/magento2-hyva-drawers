@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="content">
+        <!--referenceContainer name="content">
             <block name="hyva-drawers-demo-top-button" template="Hyva_Drawers::demo/top/button.phtml" before="-" />
             <block name="hyva-drawers-demo-bottom-button" template="Hyva_Drawers::demo/bottom/button.phtml" after="hyva-drawers-demo-top-button" />
-        </referenceContainer>
+        </referenceContainer-->
 
         <referenceContainer name="drawers-container">
             <block name="hyva-drawers-demo-top" class="Hyva\Drawers\Block\Drawer">
