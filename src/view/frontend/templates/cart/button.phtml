@@ -42,7 +42,7 @@ $showMiniCart = $storeConfig->getStoreConfig(SidebarCart::XML_PATH_CHECKOUT_SIDE
         $dispatch('toggle-cart', { isOpen: true })
     }"
     @toggle-cart.window="toggleCart($event)"
-    :aria-expanded="isCartOpen"
+    :aria-expanded="drawerState('hyva-cart-drawer')"
     aria-haspopup="dialog"
     @click="drawerOpen('hyva-cart-drawer')"
 <?php else: ?>
