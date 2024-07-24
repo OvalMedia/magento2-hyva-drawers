@@ -70,13 +70,6 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
                     this.$refs.form.submit();
                 }
             },
-            clearSearch() {
-                const input = this.$refs.searchInput;
-                input.value = null;
-                this.hasTerm = false;
-                this.suggestions = [];
-                input.focus();
-            },
             focusElement(element) {
                 if (element && element.nodeName === "DIV") {
                     element.focus();
@@ -113,8 +106,8 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
                "
         />
         <button
-                type="button"
-                @click="clearSearch"
+                type="reset"
+                @click="suggestions = []; hasTerm = false; $refs.searchInput.focus()"
                 x-show="hasTerm"
                 aria-label="<?= $escaper->escapeHtmlAttr(__('Clear search')) ?>"
                 class="absolute mt-1 right-0 p-2 text-gray-300 transition-colors hover:text-black"
