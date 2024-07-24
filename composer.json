@@ -2,17 +2,13 @@
   "name": "ovalmedia/magento2-hyva-drawers",
   "description": "Easily add and customize any number of off-canvas drawers.",
   "type": "magento2-module",
-  "require": {
-    "magento/framework": "*",
-    "hyva-themes/magento2-default-theme": "*"
-  },
   "authors": [
     {
       "name": "Ole Hornauer",
       "email": "oh@oval-media.de"
     }
   ],
-  "license": "see LICENSE.md",
+  "license": "MIT",
   "autoload": {
     "files": [
       "src/registration.php"
