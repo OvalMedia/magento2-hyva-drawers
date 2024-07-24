@@ -19,10 +19,8 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
     aria-label="<?= $escaper->escapeHtmlAttr(__('Open menu')) ?>"
     aria-haspopup="menu"
     class="lg:hidden"
-    <?php /*
-    :aria-expanded="open"
-    :hidden="open"
-    */ ?>
+    :aria-expanded="drawerState('hyva-menu-drawer')"
+    :hidden="drawerState('hyva-menu-drawer')"
 >
     <?= $heroicons->menuHtml('p-3', 48, 48) ?>
 </button>
