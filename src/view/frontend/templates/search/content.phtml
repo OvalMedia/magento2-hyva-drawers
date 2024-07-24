@@ -74,6 +74,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
                 const input = this.$refs.searchInput;
                 input.value = null;
                 this.hasTerm = false;
+                this.suggestions = [];
                 input.focus();
             },
             focusElement(element) {
@@ -116,7 +117,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
                 @click="clearSearch"
                 x-show="hasTerm"
                 aria-label="<?= $escaper->escapeHtmlAttr(__('Clear search')) ?>"
-                class="absolute top-0 right-0 h-full p-2 text-gray-300 transition-colors hover:text-black"
+                class="absolute mt-1 right-0 p-2 text-gray-300 transition-colors hover:text-black"
         >
             <?= $heroicons->xHtml('', 24, 24, ['aria-hidden' => 'true']); ?>
         </button>
