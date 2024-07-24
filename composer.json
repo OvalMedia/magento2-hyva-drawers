@@ -1,5 +1,5 @@
 {
-  "name": "hyva-themes/magento2-drawers",
+  "name": "ovalmedia/magento2-hyva-drawers",
   "description": "Easily add and customize any number of off-canvas drawers.",
   "type": "magento2-module",
   "require": {
@@ -20,7 +20,5 @@
     "psr-4": {
       "Hyva\\Drawers\\": "src/"
     }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": false
+  }
 }
