@@ -3,6 +3,7 @@
     <update handle="drawer_examples"/>
     <update handle="hyva_cart_drawer"/>
     <update handle="hyva_topmenu"/>
+    <update handle="hyva_drawer_search"/>
 
     <referenceContainer name="before.body.end">
         <container name="drawers-container" />
