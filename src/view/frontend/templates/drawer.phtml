@@ -24,6 +24,7 @@ use Hyva\Drawers\Block\Drawer;
 ?>
 <div x-data
      class="backdrop z-10"
+     x-cloak
      x-show="drawerState('<?= $block->getId() ?>')"
      x-transition:enter="ease-in-out duration-500"
      x-transition:enter-start="opacity-0"
