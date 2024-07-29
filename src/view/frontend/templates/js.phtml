@@ -42,48 +42,22 @@
         });
     });
 
-    /**
-     * Returns a drawer's current state
-     * open: true
-     * closed: false
-     *
-     * @param id
-     * @returns {*}
-     */
     function drawerState(id) {
         return Alpine.store('drawer').state(id);
     }
 
-    /**
-     * Toggle a drawer
-     *
-     * @param id
-     */
     function drawerToggle(id) {
         Alpine.store('drawer').toggle(id);
     }
 
-    /**
-     * Open a drawer
-     *
-     * @param id
-     */
     function drawerOpen(id) {
         Alpine.store('drawer').open(id);
     }
 
-    /**
-     * Close a drawer
-     *
-     * @param id
-     */
     function drawerClose(id) {
         Alpine.store('drawer').close(id);
     }
 
-    /**
-     * Close all open drawers at once
-     */
     function drawerCloseAll() {
         Alpine.store('drawer').closeAll();
     }
