@@ -27,7 +27,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
 <div x-data="initCartDrawer()" @private-content-loaded.window="getData($event.detail.data)">
     <template x-if="itemsCount">
         <div>
-            <?= $block->getChildHtml('cart-drawer.totals.before'); ?>
+            <?= $block->getChildHtml('hyva.cart-drawer.totals.before'); ?>
 
             <div class="relative grid gap-6 sm:gap-8 py-3 px-1 sm:px-3 bg-white">
                 <div class="w-full p-3 space-x-4 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100">
@@ -49,10 +49,10 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
                     </a>
                 </div>
                 <div x-html="getSectionDataExtraActions()"></div>
-                <?= $block->getChildHtml('extra_actions'); ?>
+                <?= $block->getChildHtml('hyva.extra_actions'); ?>
             </div>
         </div>
     </template>
 
-    <?= $block->getChildHtml('cart-drawer.bottom'); ?>
+    <?= $block->getChildHtml('hyva.cart-drawer.bottom'); ?>
 </div>
