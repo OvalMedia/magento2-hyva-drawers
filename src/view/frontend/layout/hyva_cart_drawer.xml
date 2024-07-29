@@ -8,15 +8,32 @@
         </referenceBlock>
 
         <referenceContainer name="drawers-container">
-            <block name="hyva-cart-drawer" class="Hyva\Drawers\Block\Drawer">
+            <block name="hyva-cart-drawer" class="Hyva\Drawers\Block\Drawer" ifconfig="checkout/sidebar/display">
                 <arguments>
                     <argument name="title" xsi:type="string">My Cart</argument>
                     <argument name="position" xsi:type="string">right</argument>
                 </arguments>
                 <block name="hyva-cart-drawer.header" />
-                <block name="hyva-cart-drawer.content" template="Hyva_Drawers::cart/content.phtml" />
-                <block name="hyva-cart-drawer.footer" template="Hyva_Drawers::cart/footer.phtml" />
+                <block name="hyva-cart-drawer.content" template="Hyva_Drawers::cart/content.phtml">
+                    <container name="hyva.cart-drawer.top"/>
+                    <container name="hyva.cart-drawer.items.before"/>
+                </block>
+                <block name="hyva-cart-drawer.footer" template="Hyva_Drawers::cart/footer.phtml">
+                    <container name="hyva.cart-drawer.totals.before"/>
+                    <container name="hyva.extra_actions"/>
+                    <container name="hyva.cart-drawer.bottom"/>
+                </block>
             </block>
         </referenceContainer>
+
+        <!--
+            Move the containers defined in Hyva_Theme\layout\default.xml into new containers
+            to maintain backwards compatibility.
+        -->
+        <move element="cart-drawer.top" destination="hyva.cart-drawer.top"/>
+        <move element="cart-drawer.items.before" destination="hyva.cart-drawer.items.before"/>
+        <move element="cart-drawer.totals.before" destination="hyva.cart-drawer.totals.before"/>
+        <move element="extra_actions" destination="hyva.extra_actions"/>
+        <move element="cart-drawer.bottom" destination="hyva.cart-drawer.bottom"/>
     </body>
 </page>
