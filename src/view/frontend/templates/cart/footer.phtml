@@ -34,7 +34,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
                     <p><?= $escaper->escapeHtml(__('Subtotal')) ?>: <span x-html="cart.subtotal"></span></p>
                 </div>
                 <div class="w-full p-3 space-x-4 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100">
-                    <a @click.prevent.stop="closeCartDrawer; $dispatch('toggle-authentication',
+                    <a @click.prevent.stop="drawerClose('<?= $block->getParentBlock()->getId() ?>'); $dispatch('toggle-authentication',
                                         {url: '<?= $escaper->escapeUrl($block->getUrl('checkout')) ?>'});"
                        href="<?= $escaper->escapeUrl($block->getUrl('checkout')) ?>"
                        class="inline-flex btn btn-primary"
