@@ -8,13 +8,7 @@ use Magento\Framework\View\Element\Template;
 
 class Drawer extends Template
 {
-    /**
-     * Drawer's default position
-     *
-     * @var string
-     */
     public const DEFAULT_POSITION = 'left';
-
     public const DEFAULT_HEIGHT = 'h-[10rem] md:h-[20rem]';
     public const DEFAULT_WIDTH = 'w-full md:w-[40rem]';
 
@@ -58,6 +52,11 @@ class Drawer extends Template
         ],
 
         'right' => [
+            'start' => 'translate-x-full',
+            'end' => 'translate-x-0'
+        ],
+
+        'modal' => [
             'start' => 'translate-x-full',
             'end' => 'translate-x-0'
         ]
@@ -181,7 +180,11 @@ class Drawer extends Template
                 break;
         }
 
-        return implode(' ', $classes);
+        if ($_classes = $this->getData('classes')) {
+            $classes = array_merge($classes, explode(' ', $_classes));
+        }
+
+        return implode(' ', array_unique($classes));
     }
 
     /**

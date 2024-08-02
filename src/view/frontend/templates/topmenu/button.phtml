@@ -14,7 +14,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
 ?>
 <button
     x-ref="mobileMenuTrigger"
-    @click.prevent.stop="drawerOpen('hyva-menu-drawer')"
+    @click.prevent.stop="drawerOpen('hyva-menu-drawer', <?= ($block->getScrollLock() == 'false' ? 'false' : 'true') ?>)"
     type="button"
     aria-label="<?= $escaper->escapeHtmlAttr(__('Open menu')) ?>"
     aria-haspopup="menu"

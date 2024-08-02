@@ -1,0 +1,43 @@
+<?php
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Drawers\Block\Drawer;
+
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+/** @var Drawer $block */
+?>
+<dialog
+    x-data
+    id="<?= $block->getId() ?>"
+    aria-labelledby=""
+    class="<?= $block->getClasses() ?> absolute flex flex-col z-1 max-w-full bg-white gap-y-8 shadow-2xl bg-gray-50 "
+    x-show="drawerState('<?= $block->getId() ?>')"
+    x-transition:enter="duration-300"
+    x-transition:enter-start="<?= $block->getTransitionEnterStart() ?>"
+    x-transition:enter-end="<?= $block->getTransitionEnterEnd() ?>"
+    x-transition:leave="duration-100"
+    x-transition:leave-start="<?= $block->getTransitionLeaveStart() ?>"
+    x-transition:leave-end="<?= $block->getTransitionLeaveEnd() ?>"
+    @keydown.window.escape="drawerClose('<?= $block->getId() ?>')"
+    x-cloak>
+    <section class="flex flex-col h-full text-slate-800 max-h-screen">
+        <?php if ($header = $block->getDrawerHeader()): ?>
+            <header class="relative px-4 py-6 sm:px-6">
+                <?= $header ?>
+            </header>
+        <?php endif ?>
+        <?php if ($content = $block->getDrawerContent()): ?>
+            <div class="flex-auto relative grid gap-6 sm:gap-8 overflow-y-auto overscroll-y-contain p-2">
+                <?= $content ?>
+            </div>
+        <?php endif ?>
+        <?php if ($footer = $block->getDrawerFooter()): ?>
+            <footer class="p-2">
+                <?= $footer ?>
+            </footer>
+        <?php endif ?>
+    </section>
+</dialog>

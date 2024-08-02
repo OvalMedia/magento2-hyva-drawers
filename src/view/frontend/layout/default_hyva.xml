@@ -3,7 +3,12 @@
     <!--update handle="drawer_examples"/-->
     <update handle="hyva_cart_drawer"/>
     <update handle="hyva_topmenu"/>
+
+    <!-- Replace the default search block with a drawer while keeping the same functionality... -->
     <update handle="hyva_drawer_search"/>
+
+    <!-- ...or put the search inside a sidebar drawer -->
+    <!--update handle="hyva_drawer_search_sidebar"/-->
 
     <referenceContainer name="before.body.end">
         <container name="drawers-container" />

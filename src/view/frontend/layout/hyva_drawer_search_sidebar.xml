@@ -4,17 +4,22 @@
         <!-- Remove the default header search -->
         <referenceBlock name="header.content.search" remove="true" />
 
-        <referenceContainer name="header.container">
+        <referenceContainer name="drawers-container">
             <block name="hyva-drawers-search" class="Hyva\Drawers\Block\Drawer">
                 <arguments>
                     <argument name="title" xsi:type="string">Search</argument>
-                    <argument name="position" xsi:type="string">top</argument>
-                    <argument name="height" xsi:type="string">h-auto</argument>
-                    <argument name="template" xsi:type="string">Hyva_Drawers::search/drawer.phtml</argument>
+                    <argument name="position" xsi:type="string">right</argument>
                 </arguments>
 
+                <block name="hyva-drawers-search.header" />
                 <block name="hyva-drawers-search.content" template="Hyva_Drawers::search/content.phtml" />
             </block>
         </referenceContainer>
+
+        <referenceBlock name="header.links.search">
+            <action method="setScrollLock">
+                <argument name="scrollLock" xsi:type="string">true</argument>
+            </action>
+        </referenceBlock>
     </body>
 </page>

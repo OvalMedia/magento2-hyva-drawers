@@ -22,11 +22,11 @@ You add your custom drawer via layout xml to your theme. See the added layout fi
 
 The two existing drawers (mobile menu and cart) are rearranged to demonstrate the usage.
 
-For demonstration purposes two buttons are added to the content to display two drawers sliding in from the top and bottom.
+The search can now be triggered from a sidebar as well.  
 
 ## Usage examples
 
-To open, close or toggle a drawer you add the shortcut functions defined in js.phtml:
+To open, close or toggle a drawer add the shortcut functions defined in js.phtml:
 
 ```
 <button @click="drawerOpen('mydrawer')">Open my custom drawer</button>
