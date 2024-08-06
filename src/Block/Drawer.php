@@ -11,11 +11,8 @@ class Drawer extends Template
     public const DEFAULT_POSITION = 'left';
     public const DEFAULT_HEIGHT = 'h-[10rem] md:h-[20rem]';
     public const DEFAULT_WIDTH = 'w-full md:w-[40rem]';
-
-    /**
-     *
-     */
     public const DEFAULT_TEMPLATE = 'Hyva_Drawers::drawer.phtml';
+    public const DEFAULT_BACKDROP = 'backdrop:bg-black/75 backdrop:backdrop-blur-sm';
 
     /**
      * Default template to use for the sections.
@@ -67,7 +64,7 @@ class Drawer extends Template
      */
     public function getTemplate(): string
     {
-        return $this->_template !== null ? $this->_template : self::DEFAULT_TEMPLATE;
+        return ($this->_template ?: self::DEFAULT_TEMPLATE);
     }
 
     /**
@@ -149,6 +146,25 @@ class Drawer extends Template
     }
 
     /**
+     * Decide wether a backdrop should be shown.
+     * Defaults to 'true'
+     *
+     * @return bool
+     */
+    public function getBackdrop(): bool
+    {
+        return !($this->getData('backdrop') == 'false');
+    }
+
+    /**
+     * @return string
+     */
+    public function getBackdropClasses(): string
+    {
+        return $this->getData('backdrop_classes') ?: self::DEFAULT_BACKDROP;
+    }
+
+    /**
      * @return string
      */
     public function getClasses(): string
@@ -160,6 +176,10 @@ class Drawer extends Template
             $classes[] = 'w-full ' . ($this->getHeight() ?: self::DEFAULT_HEIGHT);
         } elseif (in_array($position, ['left', 'right'])) {
             $classes[] = 'h-full ' . ($this->getWidth() ?: self::DEFAULT_WIDTH);
+        }
+
+        if ($this->getBackdrop()) {
+            $classes[] = $this->getBackdropClasses();
         }
 
         /**

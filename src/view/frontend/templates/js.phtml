@@ -22,6 +22,8 @@
             },
 
             open(id, scrollLock = true) {
+                let $dialog = document.getElementById(id);
+                $dialog.showModal();
                 this.states[id] = true;
 
                 if (scrollLock) {
@@ -30,12 +32,15 @@
             },
 
             close(id) {
+                let $dialog = document.getElementById(id);
+                $dialog.close();
                 this.states[id] = false;
                 this.scrollLock(false);
             },
 
             closeAll() {
                 for (const [key, value] of Object.entries(this.states)) {
+                    document.getElementById(key).close();
                     this.states[key] = false;
                 }
 

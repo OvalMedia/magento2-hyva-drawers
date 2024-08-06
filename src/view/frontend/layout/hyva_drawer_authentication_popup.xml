@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="drawers-container">
+            <block name="hyva-drawer-authentication-popup" class="Hyva\Drawers\Block\Drawer">
+                <arguments>
+                    <argument name="title" xsi:type="string">Checkout using your account</argument>
+                    <argument name="position" xsi:type="string">modal</argument>
+                </arguments>
+                <block name="hyva-drawer-authentication-popup.header" />
+                <block name="hyva-drawer-authentication-popup.content" template="Hyva_Drawers::authentication/content.phtml" />
+                <!--block name="hyva-drawer-authentication-popup.footer" template="Hyva_Drawers::authentication/footer.phtml" /-->
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <!--referenceContainer name="content">
+        <referenceContainer name="content">
             <block name="hyva-drawers-demo-top-button" template="Hyva_Drawers::demo/top/button.phtml" before="-" />
-            <block name="hyva-drawers-demo-bottom-button" template="Hyva_Drawers::demo/bottom/button.phtml" after="hyva-drawers-demo-top-button" />
-        </referenceContainer-->
+        </referenceContainer>
 
         <referenceContainer name="drawers-container">
             <block name="hyva-drawers-demo-top" class="Hyva\Drawers\Block\Drawer">
@@ -15,7 +14,10 @@
                     position: top, right, bottom, left (default: left)
                 -->
                 <arguments>
-                    <argument name="title" xsi:type="string">Demo Drawer Top</argument>
+                    <!-- 'drawer' (default) or 'modal' -->
+                    <argument name="type" xsi:type="string">modal</argument>
+                    <argument name="title" xsi:type="string">Demo Modal</argument>
+                    <!-- Only valid for type 'drawer' -->
                     <argument name="position" xsi:type="string">top</argument>
                 </arguments>
 
@@ -34,14 +36,6 @@
                 <!--block name="hyva-drawers-demo-top.footer" template="Hyva_Drawers::demo/top/footer.phtml" /-->
             </block>
 
-            <block name="hyva-drawers-demo-bottom" class="Hyva\Drawers\Block\Drawer">
-                <arguments>
-                    <argument name="title" xsi:type="string">Demo Drawer Bottom</argument>
-                    <argument name="position" xsi:type="string">bottom</argument>
-                </arguments>
-                <block name="hyva-drawers-demo-bottom.header" />
-                <block name="hyva-drawers-demo-bottom.content" template="Hyva_Drawers::demo/bottom/content.phtml" />
-            </block>
         </referenceContainer>
     </body>
 </page>

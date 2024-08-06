@@ -15,6 +15,7 @@
                 <arguments>
                     <argument name="title" xsi:type="string">Menu</argument>
                     <argument name="position" xsi:type="string">left</argument>
+                    <!--argument name="backdrop" xsi:type="string">false</argument-->
                 </arguments>
                 <block name="hyva-menu-drawer.header" />
                 <block name="hyva-menu-drawer.content" template="Hyva_Drawers::topmenu/content.phtml" />

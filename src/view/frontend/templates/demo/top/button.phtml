@@ -15,7 +15,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
 <button
     x-data
     type="button"
-    @click="drawerOpen('hyva-drawers-demo-top')"
+    @click="drawerOpen('hyva-drawers-demo-top', false)"
     aria-label="<?= $escaper->escapeHtmlAttr(__('Open Top Demo')) ?>"
 >
     <?= $heroicons->arrowCircleUpHtml('p-3', 48, 48) ?>

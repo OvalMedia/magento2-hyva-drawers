@@ -12,6 +12,7 @@
                 <arguments>
                     <argument name="title" xsi:type="string">My Cart</argument>
                     <argument name="position" xsi:type="string">right</argument>
+                    <argument name="backdrop" xsi:type="string">true</argument>
                 </arguments>
                 <block name="hyva-cart-drawer.header" />
                 <block name="hyva-cart-drawer.content" template="Hyva_Drawers::cart/content.phtml">
