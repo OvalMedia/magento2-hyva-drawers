@@ -16,5 +16,9 @@
                 <block name="hyva-drawers-search.content" template="Hyva_Drawers::search/content.phtml" />
             </block>
         </referenceContainer>
+
+        <referenceContainer name="before.body.end">
+            <block name="hyva-drawers-search.js" template="Hyva_Drawers::search/js.phtml" />
+        </referenceContainer>
     </body>
 </page>
