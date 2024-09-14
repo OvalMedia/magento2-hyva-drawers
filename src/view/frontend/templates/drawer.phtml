@@ -36,7 +36,7 @@ use Hyva\Drawers\Block\Drawer;
         x-transition:leave-end="<?= $block->getTransitionLeaveEnd() ?>"
         @keydown.window.escape="drawerClose('<?= $block->getId() ?>')"
         x-cloak>
-    <section class="flex flex-col h-full text-slate-800 max-h-screen">
+    <section class="flex flex-col h-full text-slate-800 max-h-screen" @click.outside="drawerClose('<?= $block->getId() ?>')">
         <?php if ($header = $block->getDrawerHeader()): ?>
             <header class="relative px-4 py-6 sm:px-6">
                 <?= $header ?>
