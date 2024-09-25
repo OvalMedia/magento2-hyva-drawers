@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <!-- remove existing mobile menu -->
+        <!-- Remove existing mobile menu -->
         <referenceBlock name="topmenu_mobile" remove="true" />
 
-        <!-- separate hamburger button -->
+        <!-- Separate hamburger button -->
         <referenceBlock name="header-content">
             <block name="mobile-menu-button" template="Hyva_Drawers::topmenu/button.phtml" />
         </referenceBlock>
 
-        <!-- add a new drawer for the mobile menu -->
+        <!-- Add a new drawer for the mobile menu -->
         <referenceContainer name="drawers-container">
             <block name="hyva-menu-drawer" class="Hyva\Drawers\Block\Drawer">
                 <arguments>
