@@ -212,7 +212,7 @@ class Drawer extends Template
      */
     public function getTransitionEnterStart(): string
     {
-        return $this->getStateClass('start');
+        return $this->getStateClass();
     }
 
     /**
@@ -236,7 +236,7 @@ class Drawer extends Template
      */
     public function getTransitionLeaveEnd(): string
     {
-        return $this->getStateClass('start');
+        return $this->getStateClass();
     }
 
     /**
