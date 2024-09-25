@@ -11,16 +11,18 @@ use Magento\Framework\View\Element\Template;
 /** @var ViewModelRegistry $viewModels */
 /** @var HeroiconsOutline $heroicons */
 $heroicons = $viewModels->require(HeroiconsOutline::class);
+$title = $block->getParentBlock() ? $block->getParentBlock()->getTitle() : null;
+$id = $block->getParentBlock() ? $block->getParentBlock()->getId() : null;
 ?>
 <div class="flex gap-2 justify-between items-center">
     <p class="text-lg font-medium leading-7 text-gray-900">
-        <strong><?= $escaper->escapeHtml(__($block->getParentBlock()->getTitle())) ?></strong>
+        <strong><?= $escaper->escapeHtml(__($title)) ?></strong>
     </p>
 
     <button
             type="button"
-            @click="drawerClose('<?= $block->getParentBlock()->getId() ?>')"
-            aria-label="<?= $escaper->escapeHtmlAttr(__('Close %1', $block->getParentBlock()->getTitle())) ?>"
+            @click="drawerClose('<?= $id ?>')"
+            aria-label="<?= $escaper->escapeHtmlAttr(__('Close %1', $title)) ?>"
             class="absolute top-0 right-2 p-4 mt-2 text-gray-300 transition-colors hover:text-black"
     >
         <?= $heroicons->xHtml('', 24, 24, ['aria-hidden' => 'true']); ?>
