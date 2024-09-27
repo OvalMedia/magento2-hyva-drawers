@@ -106,7 +106,7 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
         }
     }
 </script>
-<div x-data="initCartDrawer()" @private-content-loaded.window="getData($event.detail.data)">
+<div x-data="initCartDrawer()" @private-content-loaded.window="getData($event.detail.data)" class="h-full">
     <?= $block->getChildHtml('cart-drawer.top'); ?>
     <?= $block->getChildHtml('cart-drawer.items.before'); ?>
 
