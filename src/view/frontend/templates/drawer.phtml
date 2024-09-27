@@ -43,7 +43,7 @@ use Hyva\Drawers\Block\Drawer;
             </header>
         <?php endif ?>
         <?php if ($content = $block->getDrawerContent()): ?>
-            <div class="flex-auto relative grid gap-6 sm:gap-8 overflow-y-auto overscroll-y-contain p-2">
+            <div class="flex-auto relative overflow-y-auto overscroll-y-contain px-5">
                 <?= $content ?>
             </div>
         <?php endif ?>
