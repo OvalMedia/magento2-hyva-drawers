@@ -26,6 +26,19 @@ $helper = $this->helper(SearchHelper::class);
             minSearchLength: <?= (int) $helper->getMinQueryLength() ?>,
             suggestions: [],
             hasTerm: false,
+            searchInput: '',
+            showResetButton: false,
+            buttonEnabled: false,
+            update() {
+                this.buttonEnabled = this.$refs.searchInput.value.length > 0;
+            },
+            reset() {
+                this.suggestions = [];
+                this.hasTerm = false;
+                this.$refs.searchInput.focus();
+                this.$refs.form.reset();
+                this.buttonEnabled = false;
+            },
             suggest() {
                 const search = this.$refs.searchInput;
                 this.hasTerm = (search.value.length ? true : false);

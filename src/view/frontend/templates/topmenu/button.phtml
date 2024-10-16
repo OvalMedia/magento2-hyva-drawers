@@ -11,6 +11,8 @@ use Magento\Framework\Escaper;
 
 /** @var HeroiconsOutline $heroicons */
 $heroicons = $viewModels->require(HeroiconsOutline::class);
+$width = $block->getWidth() ? $block->getWidth() : 48;
+$height = $block->getHeight() ? $block->getHeight() : 48;
 ?>
 <button
     x-data
@@ -23,5 +25,5 @@ $heroicons = $viewModels->require(HeroiconsOutline::class);
     :aria-expanded="drawerState('hyva-menu-drawer')"
     :hidden="drawerState('hyva-menu-drawer')"
 >
-    <?= $heroicons->menuHtml('p-3', 48, 48) ?>
+    <?= $heroicons->menuHtml('p-3', $width, $height) ?>
 </button>
